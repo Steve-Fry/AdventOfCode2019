@@ -24,13 +24,22 @@ namespace Advent_of_Code.Day_03
 
         public int GetClosestIntersection()
         {
-            
-            wirePath1.positions.IntersectWith(wirePath2.positions);
+            var intersections = from a in wirePath1.positions
+                               join b in wirePath2.positions on a.Key equals b.Key
+                               select a;
 
-            // The intersection at 0,0 is not valid. 
-            wirePath1.positions.Remove(new Position(0, 0));
+            return intersections.Select(a => Math.Abs(a.Key.x) + Math.Abs(a.Key.y)).Min();
+        }
 
-            return wirePath1.positions.Select(a => Math.Abs(a.x) + Math.Abs(a.y)).Min();
+        public int GetFirstCrossing()
+        {
+            var intersections = from a in wirePath1.positions
+                                join b in wirePath2.positions on a.Key equals b.Key
+                                orderby (a.Value + b.Value) ascending
+                                select a.Value + b.Value;
+
+            return intersections.Take(1).ToList()[0];
+
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,17 +7,18 @@ namespace Advent_of_Code.Day_03
 {
     class WirePath
     {
-        public HashSet<Position> positions { get; private set; }
+        public Dictionary<Position, int> positions { get; private set; }
         public Position currentPosition { get; private set; }
+
+        private int runningTotal;
 
         public WirePath()
         {
-            positions = new HashSet<Position>();
-            positions.Add(new Position(0, 0));
-
-
+            positions = new Dictionary<Position, int>();
+            //positions.Add(new Position(0, 0), 0);
 
             currentPosition = new Position(0, 0);
+            runningTotal = 0;
         }
 
         public void Move(string instruction)
@@ -54,8 +56,13 @@ namespace Advent_of_Code.Day_03
                 int newX = currentPosition.x + xDirection;
                 int newY = currentPosition.y + yDirection;
 
+                runningTotal += 1;
+
                 currentPosition = new Position(newX, newY);
-                positions.Add(new Position(newX, newY));
+                if (positions.ContainsKey(new Position(newX, newY)) == false)
+                {
+                    positions.Add(new Position(newX, newY), runningTotal);
+                }
             }
         }
 
