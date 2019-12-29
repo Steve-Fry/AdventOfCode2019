@@ -15,4 +15,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Day 05\Tests\" />
+  </ItemGroup>
+
 </Project>
