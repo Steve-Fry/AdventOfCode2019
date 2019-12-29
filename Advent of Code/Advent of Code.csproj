@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Day 02\Tests\" />
     <Folder Include="Day 05\Tests\" />
   </ItemGroup>
 

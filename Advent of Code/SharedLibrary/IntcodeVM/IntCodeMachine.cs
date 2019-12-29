@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Advent_of_Code.Day_02
+namespace Advent_of_Code.SharedLibrary.IntcodeVM
 {
     class IntCodeMachine
     {

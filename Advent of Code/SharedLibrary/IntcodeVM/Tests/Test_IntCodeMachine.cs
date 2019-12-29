@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace Advent_of_Code.Day_02.Tests
+namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
 {
     public class Test_IntCodeMachine
     {
@@ -65,6 +65,16 @@ namespace Advent_of_Code.Day_02.Tests
             List<int> actual = intMachine.GetState();
             List<int> expected = new List<int>() { 30, 1, 1, 4, 2, 5, 6, 0, 99 };
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ShouldCalculateTheCorrectResultForPart1()
+        {
+            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"..\..\..\Day 02\input.txt");
+            IntCodeMachine intMachine = new IntCodeMachine(program);
+            int actual = intMachine.Run();
+
+            Assert.Equal(4570637, actual);
         }
 
     }
