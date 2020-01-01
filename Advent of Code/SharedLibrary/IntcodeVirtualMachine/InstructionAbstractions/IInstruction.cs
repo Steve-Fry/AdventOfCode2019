@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Advent_of_Code.SharedLibrary.IntcodeVM
+namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
 {
     public interface IInstruction
     {

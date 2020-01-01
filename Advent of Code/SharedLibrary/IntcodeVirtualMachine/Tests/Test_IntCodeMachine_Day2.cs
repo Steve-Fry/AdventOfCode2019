@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
 {
-    public class Test_IntCodeMachine
+    public class Test_IntCodeMachine_Day2
     {
         [Fact]
         public void ShouldCorrectlyCalculateExample1()

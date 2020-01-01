@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Advent_of_Code.SharedLibrary.IntcodeVM.Instructions
+namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
 {
     class StopInstruction : InstructionBase, IInstruction
     {
