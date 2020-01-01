@@ -23,7 +23,7 @@ namespace Advent_of_Code.Day_02
         private int GetPart1Solution()
         {
             List<int> freshInitialState = initialState.GetRange(0, initialState.Count);
-            IntCodeMachine intMachine = new IntCodeMachine(freshInitialState);
+            IntcodeVirtualMachine intMachine = new IntcodeVirtualMachine(freshInitialState);
             return intMachine.Run();
         }
 
@@ -36,7 +36,7 @@ namespace Advent_of_Code.Day_02
                     List<int> freshInitialState = initialState.GetRange(0, initialState.Count);
                     freshInitialState[1] = i;
                     freshInitialState[2] = j;
-                    IntCodeMachine intMachine = new IntCodeMachine(freshInitialState);
+                    IntcodeVirtualMachine intMachine = new IntcodeVirtualMachine(freshInitialState);
 
                     int result = intMachine.Run();
                     if (result == 19690720)
