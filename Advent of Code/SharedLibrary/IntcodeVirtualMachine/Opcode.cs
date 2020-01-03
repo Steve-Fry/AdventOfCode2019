@@ -18,21 +18,13 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine
         public Opcode(int opcode)
         {
             FullOpcode = opcode;
-
-            //if (FullOpcode < 100)
-            //{
-            //    SetupSimpleOpcode();
-            //}
-            //else
-            //{
-                SetupCompositeOpcode();
-            //}
+            SetupCompositeOpcode();
         }
 
         private void SetupCompositeOpcode()
         {
             FullStringOpcode = FullOpcode.ToString();
-            if (FullStringOpcode.Length >=2)
+            if (FullStringOpcode.Length >= 2)
             {
                 NumericOpcode = int.Parse(FullStringOpcode.Substring(FullStringOpcode.Length - 2));
             }
@@ -41,7 +33,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine
                 NumericOpcode = FullOpcode;
             }
 
-            
+
             if (FullStringOpcode.Length >= 3)
             {
                 Parameter1Mode = FullStringOpcode[FullStringOpcode.Length - 3] == '1' ? ParameterMode.immediate : ParameterMode.position;

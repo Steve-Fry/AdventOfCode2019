@@ -12,7 +12,6 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
 
         protected ParameterMode parameter1mode;
         protected ParameterMode parameter2mode;
-        //protected ParameterMode parameter3mode;
 
         public int Input1Value
         {
@@ -46,7 +45,30 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
             }
         }
 
-        public BinaryOperatorInstruction(int instructionPointer, List<int> program, ParameterMode parameter1Mode, ParameterMode parameter2Mode, ParameterMode parameter3Mode) : base(instructionPointer, program)
+        protected bool isSelfReferencing
+        {
+            // Used in instructions which may modify data within the running instruction, these should not automatically increment the instruction pointer. 
+            get
+            {
+                if (parameter1mode == ParameterMode.position && parameter1Value >= instructionPointer && parameter1Value <= instructionPointer + 4)
+                {
+                    return true;
+                }
+
+                if (parameter2mode == ParameterMode.position && parameter2Value >= instructionPointer && parameter2Value <= instructionPointer + 4)
+                {
+                    return true;
+                }
+
+                if (parameter2mode == ParameterMode.position && parameter2Value >= instructionPointer && parameter2Value <= instructionPointer + 4)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+    public BinaryOperatorInstruction(int instructionPointer, List<int> program, ParameterMode parameter1Mode, ParameterMode parameter2Mode, ParameterMode parameter3Mode) : base(instructionPointer, program)
         {
             parameter1Value = program[instructionPointer + 1];
             parameter2Value = program[instructionPointer + 2];
@@ -54,9 +76,6 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
 
             this.parameter1mode = parameter1Mode;
             this.parameter2mode = parameter2Mode;
-            //this.parameter3mode = parameter3Mode;
-
         }
-
     }
 }

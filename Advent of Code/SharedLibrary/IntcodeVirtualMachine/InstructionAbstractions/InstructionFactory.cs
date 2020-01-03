@@ -8,10 +8,13 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
 {
     public static class InstructionFactory
     {
+        private static int instructionsProcessed = 0;
 
         public static IInstruction GetInstruction(int instructionPointer, List<int> program, IInputProvider inputProvider, IOutputProvider outputProvider)
         {
             Opcode opcode = new Opcode(program[instructionPointer]);
+
+            instructionsProcessed += 1;
 
             switch (opcode.NumericOpcode)
             {
@@ -23,15 +26,20 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
                     return new InputInstruction(instructionPointer, program, inputProvider);
                 case 4:
                     return new OutputInstruction(instructionPointer, program, outputProvider);
+                case 5:
+                    return new JumpInstruction(instructionPointer, program, jumpIfTrue: true, opcode.Parameter1Mode, opcode.Parameter2Mode);
+                case 6:
+                    return new JumpInstruction(instructionPointer, program, jumpIfTrue: false, opcode.Parameter1Mode, opcode.Parameter2Mode);
+                case 7:
+                    return new LessThanInstruction(instructionPointer, program, opcode.Parameter1Mode, opcode.Parameter2Mode, opcode.Parameter3Mode);
+                case 8:
+                    return new EqualsInstruction(instructionPointer, program, opcode.Parameter1Mode, opcode.Parameter2Mode, opcode.Parameter3Mode);
                 case 99:
                     return new StopInstruction(instructionPointer, program);
                 default:
-                    throw new ArgumentException($"Passed invalid opcode = {opcode}");
+                    System.IO.File.WriteAllText("MemoryDebug.txt", String.Join(',', program));
+                    throw new ArgumentException($"Passed invalid opcode = {opcode.NumericOpcode}, last instructionPointer = {instructionPointer}, instructionsProcessed = {instructionsProcessed}");
             }
         }
-
-
-
-
     }
 }
