@@ -25,7 +25,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
                 case 3:
                     return new InputInstruction(instructionPointer, program, inputProvider);
                 case 4:
-                    return new OutputInstruction(instructionPointer, program, outputProvider);
+                    return new OutputInstruction(instructionPointer, program, outputProvider, opcode.Parameter1Mode);
                 case 5:
                     return new JumpInstruction(instructionPointer, program, jumpIfTrue: true, opcode.Parameter1Mode, opcode.Parameter2Mode);
                 case 6:
