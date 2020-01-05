@@ -27,5 +27,10 @@ namespace Advent_of_Code.SharedLibrary
             string input = File.ReadAllText(path);
             return input.Split(',').Select(x => int.Parse(x)).ToList();
         }
+
+        public static List<string> GetStringsFromFile(string path)
+        {
+            return File.ReadAllLines(path).ToList();
+        }
     }
 }
