@@ -8,7 +8,6 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
     {
         protected int inputParameterValue;
         protected int outputParameterValue;
-        protected int outputIndex;
 
         protected ParameterMode inputParameterMode;
         protected ParameterMode outputParameterMode;
@@ -45,7 +44,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
             }
         }
 
-        protected bool isSelfReferencing
+        protected bool IsSelfReferencing
         {
             // Used in instructions which may modify data within the running instruction, these should not automatically increment the instruction pointer. 
             get
