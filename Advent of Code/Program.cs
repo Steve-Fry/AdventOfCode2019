@@ -25,6 +25,8 @@ namespace Advent_of_Code
             Day_06.Day_06 d6 = new Day_06.Day_06();
             d6.Run();
 
+            Day_07.Day_07 d7 = new Day_07.Day_07();
+            d7.Run();
         }
     }
 }
