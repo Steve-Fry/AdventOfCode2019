@@ -12,7 +12,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM
     {
         List<int> program;
         int instructionPointer;
-        bool isDone = false;
+        public bool IsDone { get; private set; }
 
         IInputProvider inputProvider;
         IOutputProvider outputProvider;
@@ -22,7 +22,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM
         {
             this.program = program;
             instructionPointer = 0;
-            isDone = false;
+            IsDone = false;
 
 
             this.inputProvider = inputProvider ?? new ConsoleInputProvider();
@@ -31,7 +31,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM
 
         public int Run()
         {
-            while (isDone == false) { Step(); }
+            while (IsDone == false) { Step(); }
             return program[0];
         }
 
@@ -41,7 +41,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM
 
             if (instruction is StopInstruction)
             {
-                isDone = true;
+                IsDone = true;
             }
             else
             {
