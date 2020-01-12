@@ -15,14 +15,17 @@ namespace Advent_of_Code.Day_07
         private readonly List<int> _program;
         private readonly string _filename;
 
-        public Amplifier(int input, int phase, List<int> program)
+        public Amplifier(int input, int phase, List<int> program, IInputProvider inputProvider = null, IOutputProvider outputProvider = null)
         {
             this._input = input;
             this._phase = phase;
             _program = program;
             _filename = Path.GetTempFileName();
 
-            _intcodeVirtualMachine = new IntcodeVirtualMachine(_program, new StaticInputProvider(new List<int>() { _phase, _input}), new FileOutputProvider(_filename));
+            inputProvider ??= new StaticInputProvider(new List<int>() { _phase, _input });
+            outputProvider ??= new FileOutputProvider(_filename);
+
+            _intcodeVirtualMachine = new IntcodeVirtualMachine(_program, inputProvider, outputProvider);
         }
 
         public int Run()
