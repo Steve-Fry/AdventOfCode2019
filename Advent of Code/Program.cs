@@ -8,6 +8,7 @@ namespace Advent_of_Code
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Starting");
             Day_01.Day_01.Run();
 
             Day_02.Day_02 d2 = new Day_02.Day_02();
@@ -27,6 +28,8 @@ namespace Advent_of_Code
 
             Day_07.Day_07 d7 = new Day_07.Day_07();
             d7.Run();
+
+            Console.WriteLine("Complete");
         }
     }
 }

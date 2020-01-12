@@ -14,12 +14,16 @@ namespace Advent_of_Code.Day_07
             List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"..\..\..\Day 07\Day7Input.txt");
             AmplifierTuner tuner = new AmplifierTuner(program);
             tuner.Run();
+
+            FeedbackAmplifierTuner feedbackTuner = new FeedbackAmplifierTuner(program);
+            feedbackTuner.Run();
             
             Console.WriteLine($"=====Day 7, part 1=====");
             Console.WriteLine($"Best Tune = {string.Join(',', tuner.OptimalTune)} with a value of {tuner.HighestOutput}");
 
             Console.WriteLine($"=====Day 7, part 2=====");
-            
+            Console.WriteLine($"Best Tune = {string.Join(',', feedbackTuner.OptimalTune)} with a value of {feedbackTuner.HighestOutput}");
+
         }
 
 

@@ -35,23 +35,6 @@ namespace Advent_of_Code.Day_07
             }
         }
 
-        public void RunInFeedbackMode()
-        {
-            IEnumerable<List<int>> tune_permetations = Utilities.Permutate(new List<int> { 5, 6, 7, 8, 9 }, 5);
-
-            foreach (var tune in tune_permetations)
-            {
-                int input_output = 0;
-
-                foreach (var phase in tune)
-                {
-                    input_output = GetAmplifierOutput(input_output, phase, _program.GetRange(0, _program.Count));
-                }
-
-                UpdateBestResult(tune, input_output);
-            }
-        }
-
         private int GetAmplifierOutput(int input, int phase, List<int> program)
         {
             Amplifier amp;
