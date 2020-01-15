@@ -29,6 +29,10 @@ namespace Advent_of_Code
             Day_07.Day_07 d7 = new Day_07.Day_07();
             d7.Run();
 
+
+            Day_08.Day_08 d8 = new Day_08.Day_08();
+            d8.Run();
+
             Console.WriteLine("Complete");
         }
     }
