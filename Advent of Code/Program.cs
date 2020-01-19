@@ -32,6 +32,9 @@ namespace Advent_of_Code
 
             Day_08.Day_08 d8 = new Day_08.Day_08();
             d8.Run();
+            
+            Day_09.Day_09 d9 = new Day_09.Day_09();
+            d9.Run();
 
             Console.WriteLine("Complete");
         }
