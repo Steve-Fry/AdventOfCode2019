@@ -7,63 +7,102 @@ namespace Advent_of_Code.Day_08
 {
     class SIFImage
     {
-        private readonly IEnumerable<int> _imageData;
+        private readonly List<int> _imageData;
 
-        public int X { get; }
-        public int Y { get; }
-        public int LayerSize { get { return X * Y; } }
+        public int XPixels { get; }
+        public int YPixels { get; }
+        public int LayerSize { get { return XPixels * YPixels; } }
 
-        public List<List<int>> Layers { get; private set; }
+        private Dictionary<int, char> _pixelMap;
+
+        public IEnumerable<List<int>> Layers
+        {
+            get
+            {
+                for (int i = 0; i < _imageData.Count; i+=LayerSize)
+                {
+                    yield return _imageData.GetRange(i, LayerSize);
+                }
+            }
+        }
 
         public SIFImage(int x, int y)
         {
-            this.X = x;
-            this.Y = y;
+            this.XPixels = x;
+            this.YPixels = y;
 
-            this.Layers = new List<List<int>>();
+            PopulateDefaultPixelMap();
         }
 
         public SIFImage(IEnumerable<int> imageData, int x, int y) : this(x, y)
         {
-            _imageData = imageData; ;
-
-            ParseLayers(_imageData.ToList());
+            _imageData = imageData.ToList();
         }
 
         public SIFImage(string imageFilename, int x, int y) : this(x, y)
         {
             string stringimagedata = System.IO.File.ReadAllText(imageFilename);
 
-            this._imageData = from s in stringimagedata
-                              select int.Parse(s.ToString());
-
-            ParseLayers(_imageData.ToList());
+            this._imageData = (from s in stringimagedata
+                               select int.Parse(s.ToString())
+                               ).ToList();
         }
 
-        private void ParseLayers(List<int> raw)
+        private void PopulateDefaultPixelMap()
         {
-            if (raw.Count % LayerSize != 0)
+            _pixelMap = new Dictionary<int, char>()
             {
-                throw new ArgumentException("Input data length was not a multiple of x*y");
-            }
-            
-            List<int> thisLayer;
-            int startIndex;
-
-            for (int i = 0; i < (raw.Count / LayerSize); i++)
-            {
-                startIndex = i * LayerSize;
-                thisLayer = raw.GetRange(startIndex, LayerSize);
-                Layers.Add(thisLayer);
-            }
-
+                [0] = '.', // Black
+                [1] = '#', // White
+                [2] = ' ', // Transparent
+            };
         }
 
-        public void PrintLayer1()
+        public int Checksum
         {
-            for (int i = 0; i < Y; i++)
+            get
             {
-                Console.WriteLine(_imageData.Take(X).Aggregate((i, j) => i + j));
+                return Layers
+                        .Select(x => (Zeros: x.Count(y => y == 0),
+                                      Ones: x.Count(z => z == 1),
+                                      Twos: x.Count(w => w == 2)))
+                        .OrderBy(x => x.Zeros)
+                        .Select(x => x.Ones * x.Twos)
+                        .First();
+            }
+        }
+
+        public List<int> StackedImage
+        {
+            get
+            {
+                List<int> output = Enumerable.Repeat(2, LayerSize).ToList();
+
+                for (int i = 0; i < LayerSize; i++)
+                {
+                    foreach (var layer in Layers)
+                    {
+                        if (layer[i] != 2)
+                        {
+                            output[i] = layer[i];
+                            break;
+                        }
+                    }
+                }
+
+                return output;
+            }
+        }
+
+        public void RenderImageToConsole()
+        {
+            var output = StackedImage;
+
+            for (int rowIndex = 0; rowIndex < YPixels; rowIndex++)
+            {
+                int rowStartIndex = rowIndex * XPixels;
+                string rowAsString = output.GetRange(rowStartIndex, XPixels).Select(x => _pixelMap[x].ToString()).Aggregate((i, j) => $"{i}{j}");
+                Console.WriteLine(rowAsString);
             }
         }
     }

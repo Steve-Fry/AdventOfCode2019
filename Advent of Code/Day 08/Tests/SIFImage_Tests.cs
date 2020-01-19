@@ -19,8 +19,8 @@ namespace Advent_of_Code.Day_08.Tests
                 new List<int>() { 7, 8, 9, 0, 1, 2 }
             };
 
-            Assert.Equal(3, sifImageFromFile.X);
-            Assert.Equal(2, sifImageFromFile.Y);
+            Assert.Equal(3, sifImageFromFile.XPixels);
+            Assert.Equal(2, sifImageFromFile.YPixels);
             Assert.Equal(6, sifImageFromFile.LayerSize);
             Assert.Equal(expectedLayers, sifImageFromFile.Layers);
         }
@@ -36,8 +36,8 @@ namespace Advent_of_Code.Day_08.Tests
                 new List<int>() { 7, 8, 9, 0, 1, 2 }
             };
 
-            Assert.Equal(3, sifImageFromIEnumerable.X);
-            Assert.Equal(2, sifImageFromIEnumerable.Y);
+            Assert.Equal(3, sifImageFromIEnumerable.XPixels);
+            Assert.Equal(2, sifImageFromIEnumerable.YPixels);
             Assert.Equal(6, sifImageFromIEnumerable.LayerSize);
             Assert.Equal(expectedLayers, sifImageFromIEnumerable.Layers);
         }
