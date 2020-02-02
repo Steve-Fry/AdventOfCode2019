@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using System.IO;
-using Advent_of_Code.SharedLibrary.IntcodeVM;
+using Advent_of_Code.SharedLibrary.IntcodeVirtualMachine;
 using Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Input_OutputProviders;
 
 

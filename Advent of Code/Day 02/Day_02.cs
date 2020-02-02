@@ -1,4 +1,4 @@
-﻿using Advent_of_Code.SharedLibrary.IntcodeVM;
+﻿using Advent_of_Code.SharedLibrary.IntcodeVirtualMachine;
 using System;
 using System.Collections.Generic;
 

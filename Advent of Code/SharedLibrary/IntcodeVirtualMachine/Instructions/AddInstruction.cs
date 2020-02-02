@@ -4,12 +4,12 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
 {
     class AddInstruction : InstructionBase, IInstruction
     {
-        public AddInstruction(int instructionPointer, int relativeBase, List<long> program, Opcode opcode) : base(instructionPointer, relativeBase, program, opcode) { }
+        public AddInstruction(VirtualMachineState vmState, List<long> program, Opcode opcode) : base(vmState, program, opcode) { }
         
         public override int Execute()
         {
             ParameterThreeValue = ParameterOneValue + ParameterTwoValue;
-            return InstructionPointer + 4;
+            return _instructionPointer + 4;
         }
     }
 }

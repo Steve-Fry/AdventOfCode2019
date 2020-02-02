@@ -8,8 +8,9 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
     {
         private static int _instructionsProcessed = 0;
 
-        public static IInstruction GetInstruction(int instructionPointer, int relativeBase, List<long> program, IInputProvider inputProvider, IOutputProvider outputProvider)
+        internal static IInstruction GetInstruction(VirtualMachineState vmState,  List<long> program, IInputProvider inputProvider, IOutputProvider outputProvider)
         {
+            int instructionPointer = vmState.InstructionPointer;
             Opcode opcode = new Opcode(program[instructionPointer]);
 
             _instructionsProcessed += 1;
@@ -17,23 +18,25 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
             switch (opcode.NumericOpcode)
             {
                 case 1:
-                    return new AddInstruction(instructionPointer, relativeBase, program, opcode);
+                    return new AddInstruction(vmState, program, opcode);
                 case 2:
-                    return new MultiplyInstruction(instructionPointer, relativeBase, program, opcode);
+                    return new MultiplyInstruction(vmState, program, opcode);
                 case 3:
-                    return new InputInstruction(instructionPointer, relativeBase, program, opcode, inputProvider);
+                    return new InputInstruction(vmState, program, opcode, inputProvider);
                 case 4:
-                    return new OutputInstruction(instructionPointer, relativeBase, program, opcode, outputProvider);
+                    return new OutputInstruction(vmState, program, opcode, outputProvider);
                 case 5:
-                    return new JumpIfTrueInstruction(instructionPointer, relativeBase, program, opcode);
+                    return new JumpIfTrueInstruction(vmState, program, opcode);
                 case 6:
-                    return new JumpIfFalseInstruction(instructionPointer, relativeBase, program, opcode);
+                    return new JumpIfFalseInstruction(vmState, program, opcode);
                 case 7:
-                    return new LessThanInstruction(instructionPointer, relativeBase, program, opcode);
+                    return new LessThanInstruction(vmState, program, opcode);
                 case 8:
-                    return new EqualsInstruction(instructionPointer, relativeBase, program, opcode);
+                    return new EqualsInstruction(vmState, program, opcode);
+                case 9:
+                    return new AdjustRelativeBaseInstruction(vmState, program, opcode);
                 case 99:
-                    return new StopInstruction(instructionPointer, relativeBase, program, opcode);
+                    return new StopInstruction(vmState, program, opcode);
                 default:
                     System.IO.File.WriteAllText("MemoryDebug.txt", String.Join(',', program));
                     throw new ArgumentException($"Passed invalid opcode = {opcode.NumericOpcode}, last instructionPointer = {instructionPointer}, instructionsProcessed = {_instructionsProcessed}");

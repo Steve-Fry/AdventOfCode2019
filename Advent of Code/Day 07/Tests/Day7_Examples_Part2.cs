@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Xunit;
-using Advent_of_Code.SharedLibrary.IntcodeVM;
 
 namespace Advent_of_Code.Day_07.Tests
 {

@@ -7,7 +7,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
     {
         private readonly IInputProvider _inputProvider;
 
-        public InputInstruction(int instructionPointer, int relativeBase, List<long> program, Opcode opcode, IInputProvider inputProvider) : base(instructionPointer, relativeBase, program, opcode)
+        public InputInstruction(VirtualMachineState vmState, List<long> program, Opcode opcode, IInputProvider inputProvider) : base(vmState, program, opcode)
         {
             this._inputProvider = inputProvider;
         }
@@ -15,7 +15,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
         public override int Execute()
         {
             ParameterOneValue = _inputProvider.GetInput();
-            return InstructionPointer + 2;
+            return _instructionPointer + 2;
         }
     }
 }

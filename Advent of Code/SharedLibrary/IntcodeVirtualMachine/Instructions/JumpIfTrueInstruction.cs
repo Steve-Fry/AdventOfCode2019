@@ -4,7 +4,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
 {
     class JumpIfTrueInstruction : InstructionBase, IInstruction
     {
-        public JumpIfTrueInstruction(int instructionPointer, int relativeBase, List<long> program, Opcode opcode) : base(instructionPointer, relativeBase, program, opcode) { }
+        public JumpIfTrueInstruction(VirtualMachineState vmState, List<long> program, Opcode opcode) : base(vmState, program, opcode) { }
 
         public override int Execute()
         {
@@ -14,7 +14,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
             }
             else
             {
-                return InstructionPointer + 3;
+                return _instructionPointer + 3;
             }
         }
     }

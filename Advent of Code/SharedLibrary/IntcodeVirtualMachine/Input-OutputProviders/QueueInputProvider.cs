@@ -1,7 +1,6 @@
-﻿using Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Input_OutputProviders;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Advent_of_Code.Day_07
+namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Input_OutputProviders
 {
     public class QueueInputProvider : IInputProvider
     {

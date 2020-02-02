@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Xunit;
 
-namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
+namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Tests
 {
     public class Test_IntCodeMachine_Day2
     {

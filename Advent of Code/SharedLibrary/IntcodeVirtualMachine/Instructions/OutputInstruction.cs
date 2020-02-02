@@ -8,7 +8,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
         private readonly IOutputProvider _outputProvider;
 
 
-        public OutputInstruction(int instructionPointer, int relativeBase, List<long> program, Opcode opcode, IOutputProvider outputProvider) : base(instructionPointer, relativeBase, program, opcode)
+        public OutputInstruction(VirtualMachineState vmState, List<long> program, Opcode opcode, IOutputProvider outputProvider) : base(vmState, program, opcode)
         {
             this._outputProvider = outputProvider;
         }
@@ -16,7 +16,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
         public override int Execute()
         {
             _outputProvider.SendOutput(ParameterOneValue);
-            return InstructionPointer + 2;
+            return _instructionPointer + 2;
         }
     }
 }

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Xunit;
 using Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Input_OutputProviders;
 
-namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
+namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Tests
 {
     public class Test_IntCodeMachine_Day5_Part2_Opcodes
     {
