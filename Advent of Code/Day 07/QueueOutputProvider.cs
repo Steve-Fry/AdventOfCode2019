@@ -5,13 +5,13 @@ namespace Advent_of_Code.Day_07
 {
     public class QueueOutputProvider : IOutputProvider
     {
-        Queue<int> _outputQueue;
-        public QueueOutputProvider(Queue<int> outputQueue)
+        Queue<long> _outputQueue;
+        public QueueOutputProvider(Queue<long> outputQueue)
         {
             _outputQueue = outputQueue;
         }
 
-        public void SendOutput(int output)
+        public void SendOutput(long output)
         {
             _outputQueue.Enqueue(output);
         }

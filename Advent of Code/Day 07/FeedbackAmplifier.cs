@@ -20,10 +20,10 @@ namespace Advent_of_Code.Day_07
             }
         }
 
-        public Queue<int> InputQueue { get; }
-        public Queue<int> OutputQueue { get; }
+        public Queue<long> InputQueue { get; }
+        public Queue<long> OutputQueue { get; }
 
-        public FeedbackAmplifier(List<int> program, Queue<int> inputQueue, Queue<int> outputQueue)
+        public FeedbackAmplifier(List<int> program, Queue<long> inputQueue, Queue<long> outputQueue)
         {
             _program = program;
             InputQueue = inputQueue;

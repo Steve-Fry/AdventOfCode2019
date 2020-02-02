@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine
+﻿namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine
 {
     enum ParameterMode
     {
-        immediate,
-        position
+        Immediate,
+        Position,
+        Relative
     }
 }

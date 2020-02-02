@@ -1,28 +1,21 @@
 ﻿using Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Input_OutputProviders;
-using Advent_of_Code.SharedLibrary.IntcodeVM;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
 {
-    class InputInstruction : InstructionBase
+    class InputInstruction : InstructionBase, IInstruction
     {
-        private int valueIndex;
-        private IInputProvider inputProvider;
+        private readonly IInputProvider _inputProvider;
 
-        public InputInstruction(int instructionPointer, List<int> program, IInputProvider inputProvider) : base(instructionPointer, program)
+        public InputInstruction(int instructionPointer, int relativeBase, List<long> program, Opcode opcode, IInputProvider inputProvider) : base(instructionPointer, relativeBase, program, opcode)
         {
-            valueIndex = program[instructionPointer + 1];
-            this.inputProvider = inputProvider;
+            this._inputProvider = inputProvider;
         }
         
         public override int Execute()
         {
-            int inputNumber = inputProvider.GetInput();
-            program[valueIndex] = inputNumber;
-
-            return instructionPointer + 2;
+            ParameterOneValue = _inputProvider.GetInput();
+            return InstructionPointer + 2;
         }
     }
 }

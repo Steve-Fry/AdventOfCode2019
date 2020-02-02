@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Xunit;
 using Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Input_OutputProviders;
 
@@ -18,7 +16,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
 
             string filename = $"ShouldCalculatePart2JumpExamplesInPositionMode_{input}.txt";
 
-            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<int>() { input }), new FileOutputProvider(filename));
+            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<long>() { input }), new FileOutputProvider(filename));
             intcodeVirtualMachine.Run();
 
             string actual = System.IO.File.ReadAllText(filename);
@@ -37,7 +35,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
 
             string filename = $"Day5Part2JumpImmediate_{input}.txt";
 
-            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<int>() { input }), new FileOutputProvider(filename));
+            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<long>() { input }), new FileOutputProvider(filename));
             intcodeVirtualMachine.Run();
 
             string actual = System.IO.File.ReadAllText(filename);
@@ -55,15 +53,13 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
 
             string filename = $"Day5Part2LongerJump_{input}.txt";
 
-            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<int>() { input }), new FileOutputProvider(filename));
+            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<long>() { input }), new FileOutputProvider(filename));
             intcodeVirtualMachine.Run();
 
             string actual = System.IO.File.ReadAllText(filename);
             Assert.Equal(expected.ToString(), actual);
             System.IO.File.Delete(filename);
         }
-
-
     }
 }
 

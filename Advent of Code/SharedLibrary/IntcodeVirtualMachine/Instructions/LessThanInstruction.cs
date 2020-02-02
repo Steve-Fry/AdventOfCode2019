@@ -1,28 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
 {
-    class LessThanInstruction : BinaryOperatorInstruction, IInstruction
+    class LessThanInstruction : InstructionBase, IInstruction
     {
-
-        public LessThanInstruction(int instructionPointer, List<int> program, ParameterMode parameter1Mode, ParameterMode parameter2Mode, ParameterMode parameter3Mode) : base(instructionPointer, program, parameter1Mode, parameter2Mode, parameter3Mode)
-        {
-        }
+        public LessThanInstruction(int instructionPointer, int relativeBase, List<long> program, Opcode opcode) : base(instructionPointer, relativeBase, program, opcode) { }
 
         public override int Execute()
         {
-            program[outputIndex] = Input1Value < Input2Value ? 1 : 0;
-
-            if (isSelfReferencing)
-            {
-                return instructionPointer;
-            }
-            else
-            {
-                return instructionPointer + 4;
-            }
+            ParameterThreeValue = ParameterOneValue < ParameterTwoValue ? 1 : 0;
+            return InstructionPointer + 4;
         }
     }
 }

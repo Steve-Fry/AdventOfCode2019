@@ -19,7 +19,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
 
             string filename = $"ShouldCalculateEqualsOperatorInPositionMode.txt";
 
-            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<int>() { input }), new FileOutputProvider(filename));
+            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<long>() { input }), new FileOutputProvider(filename));
             intcodeVirtualMachine.Run();
 
             string actual = System.IO.File.ReadAllText(filename);
@@ -37,7 +37,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
 
             string filename = $"ShouldCalculateLessThanOperatorInPositionMode.txt";
 
-            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<int>() { input }), new FileOutputProvider(filename));
+            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<long>() { input }), new FileOutputProvider(filename));
             intcodeVirtualMachine.Run();
 
             string actual = System.IO.File.ReadAllText(filename);
@@ -55,7 +55,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
 
             string filename = $"ShouldCalculateEqualsOperatorInPositionMode.txt";
 
-            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<int>() { input }), new FileOutputProvider(filename));
+            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<long>() { input }), new FileOutputProvider(filename));
             intcodeVirtualMachine.Run();
 
             string actual = System.IO.File.ReadAllText(filename);
@@ -73,7 +73,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
 
             string filename = $"ShouldCalculateLessThanOperatorInPositionMode.txt";
 
-            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<int>() { input }), new FileOutputProvider(filename));
+            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<long>() { input }), new FileOutputProvider(filename));
             intcodeVirtualMachine.Run();
 
             string actual = System.IO.File.ReadAllText(filename);

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Xunit;
 
 namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
@@ -14,8 +12,8 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
             IntcodeVirtualMachine intMachine = new IntcodeVirtualMachine(opcodes);
             intMachine.Run();
 
-            List<int> actual = intMachine.GetState();
-            List<int> expected = new List<int>() { 3500, 9, 10, 70, 2, 3, 11, 0, 99, 30, 40, 50 };
+            List<long> actual = intMachine.GetState();
+            List<long> expected = new List<long>() { 3500, 9, 10, 70, 2, 3, 11, 0, 99, 30, 40, 50 };
             Assert.Equal(expected, actual);
         }
 
@@ -26,8 +24,8 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
             IntcodeVirtualMachine intMachine = new IntcodeVirtualMachine(opcodes);
             intMachine.Run();
 
-            List<int> actual = intMachine.GetState();
-            List<int> expected = new List<int>() { 2, 0, 0, 0, 99 };
+            List<long> actual = intMachine.GetState();
+            List<long> expected = new List<long>() { 2, 0, 0, 0, 99 };
             Assert.Equal(expected, actual);
         }
 
@@ -38,8 +36,8 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
             IntcodeVirtualMachine intMachine = new IntcodeVirtualMachine(opcodes);
             intMachine.Run();
 
-            List<int> actual = intMachine.GetState();
-            List<int> expected = new List<int>() { 2, 3, 0, 6, 99 };
+            List<long> actual = intMachine.GetState();
+            List<long> expected = new List<long>() { 2, 3, 0, 6, 99 };
             Assert.Equal(expected, actual);
         }
 
@@ -50,8 +48,8 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
             IntcodeVirtualMachine intMachine = new IntcodeVirtualMachine(opcodes);
             intMachine.Run();
 
-            List<int> actual = intMachine.GetState();
-            List<int> expected = new List<int>() { 2, 4, 4, 5, 99, 9801 };
+            List<long> actual = intMachine.GetState();
+            List<long> expected = new List<long>() { 2, 4, 4, 5, 99, 9801 };
             Assert.Equal(expected, actual);
         }
 
@@ -62,8 +60,8 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
             IntcodeVirtualMachine intMachine = new IntcodeVirtualMachine(opcodes);
             intMachine.Run();
 
-            List<int> actual = intMachine.GetState();
-            List<int> expected = new List<int>() { 30, 1, 1, 4, 2, 5, 6, 0, 99 };
+            List<long> actual = intMachine.GetState();
+            List<long> expected = new List<long>() { 30, 1, 1, 4, 2, 5, 6, 0, 99 };
             Assert.Equal(expected, actual);
         }
 
@@ -72,7 +70,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
         {
             List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"..\..\..\Day 02\input.txt");
             IntcodeVirtualMachine intMachine = new IntcodeVirtualMachine(program);
-            int actual = intMachine.Run();
+            long actual = intMachine.Run();
 
             Assert.Equal(4570637, actual);
         }

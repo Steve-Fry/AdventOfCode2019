@@ -5,13 +5,13 @@ namespace Advent_of_Code.Day_07
 {
     public class QueueInputProvider : IInputProvider
     {
-        Queue<int> _inputQueue;
-        public QueueInputProvider(Queue<int> inputQueue)
+        Queue<long> _inputQueue;
+        public QueueInputProvider(Queue<long> inputQueue)
         {
             _inputQueue = inputQueue;   
         }
 
-        public int GetInput()
+        public long GetInput()
         {
             return _inputQueue.Dequeue();
         }

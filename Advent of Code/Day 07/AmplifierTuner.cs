@@ -1,29 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Advent_of_Code.SharedLibrary;
+using System.Linq;
 
 namespace Advent_of_Code.Day_07
 {
     class AmplifierTuner
     {
-        private readonly List<int> _program;
+        private readonly List<long> _program;
 
-        public List<int> OptimalTune { get; private set; }
-        public int HighestOutput { get; private set; }
+        public List<long> OptimalTune { get; private set; }
+        public long HighestOutput { get; private set; }
 
-        public AmplifierTuner(List<int> program)
+        public AmplifierTuner(List<long> program)
         {
             _program = program;
         }
 
+        public AmplifierTuner(List<int> program)
+        {
+            _program = program.Select(x => (long)x).ToList() ;
+        }
+
         public void Run()
         {
-            IEnumerable<List<int>> permetations = Utilities.Permutate(new List<int> { 0, 1, 2, 3, 4 }, 5);
+            IEnumerable<List<long>> permetations = Utilities.Permutate(new List<long> { 0, 1, 2, 3, 4 }, 5);
 
             foreach (var tune in permetations)
             {
-                int input_output = 0;
+                long input_output = 0;
 
                 foreach (var phase in tune)
                 {
@@ -35,14 +39,14 @@ namespace Advent_of_Code.Day_07
             }
         }
 
-        private int GetAmplifierOutput(int input, int phase, List<int> program)
+        private long GetAmplifierOutput(long input, long phase, List<long> program)
         {
             Amplifier amp;
             amp = new Amplifier(input, phase, program);
             return amp.Run();
         }
 
-        private void UpdateBestResult(List<int> tune, int output)
+        private void UpdateBestResult(List<long> tune, long output)
         {
             if (output > HighestOutput)
             {
