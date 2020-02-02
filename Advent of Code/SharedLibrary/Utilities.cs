@@ -15,7 +15,7 @@ namespace Advent_of_Code.SharedLibrary
             sequence.Insert(0, tmp);
         }
 
-        public static IEnumerable<List<int>> Permutate(List<int> sequence, int count)
+        public static IEnumerable<List<long>> Permutate(List<long> sequence, int count)
         {
             if (count == 1)
             {

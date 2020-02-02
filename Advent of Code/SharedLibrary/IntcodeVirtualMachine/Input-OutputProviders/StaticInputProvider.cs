@@ -1,25 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Input_OutputProviders
 {
     class StaticInputProvider : IInputProvider
     {
-        List<int> availableInput;
-        int index;
+        readonly List<long> _availableInput;
+        int _index;
 
-        public StaticInputProvider(List<int> input)
+        public StaticInputProvider(List<long> input)
         {
-            availableInput = input;
-            index = 0;
+            _availableInput = input;
+            _index = 0;
         }
 
-        public int GetInput()
+        public long GetInput()
         {
-            if (index <= availableInput.Count)
+            if (_index <= _availableInput.Count)
             {
-                return availableInput[index++];
+                return _availableInput[_index++];
             }
             else
             {

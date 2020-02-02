@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Xunit;
 using Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Input_OutputProviders;
 
-namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
+namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Tests
 {
     public class Test_IntCodeMachine_Day5_Part2_Opcodes
     {
@@ -19,7 +17,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
 
             string filename = $"ShouldCalculateEqualsOperatorInPositionMode.txt";
 
-            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<int>() { input }), new FileOutputProvider(filename));
+            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<long>() { input }), new FileOutputProvider(filename));
             intcodeVirtualMachine.Run();
 
             string actual = System.IO.File.ReadAllText(filename);
@@ -37,7 +35,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
 
             string filename = $"ShouldCalculateLessThanOperatorInPositionMode.txt";
 
-            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<int>() { input }), new FileOutputProvider(filename));
+            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<long>() { input }), new FileOutputProvider(filename));
             intcodeVirtualMachine.Run();
 
             string actual = System.IO.File.ReadAllText(filename);
@@ -55,7 +53,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
 
             string filename = $"ShouldCalculateEqualsOperatorInPositionMode.txt";
 
-            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<int>() { input }), new FileOutputProvider(filename));
+            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<long>() { input }), new FileOutputProvider(filename));
             intcodeVirtualMachine.Run();
 
             string actual = System.IO.File.ReadAllText(filename);
@@ -73,7 +71,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM.Tests
 
             string filename = $"ShouldCalculateLessThanOperatorInPositionMode.txt";
 
-            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<int>() { input }), new FileOutputProvider(filename));
+            IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<long>() { input }), new FileOutputProvider(filename));
             intcodeVirtualMachine.Run();
 
             string actual = System.IO.File.ReadAllText(filename);

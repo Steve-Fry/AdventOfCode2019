@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions
 {
     class StopInstruction : InstructionBase, IInstruction
     {
-        public StopInstruction(int instructionPointer, List<int> program) : base(instructionPointer, program)
-        {
-        }
+        public StopInstruction(VirtualMachineState vmState, List<long> program, Opcode opcode) : base(vmState, program, opcode) { }
 
         public override int Execute()
         {

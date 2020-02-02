@@ -1,43 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 using Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Instructions;
-using Advent_of_Code.SharedLibrary.IntcodeVirtualMachine;
 using Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Input_OutputProviders;
+using System.Linq;
 
-namespace Advent_of_Code.SharedLibrary.IntcodeVM
+namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine
 {
     class IntcodeVirtualMachine
     {
-        List<int> program;
-        int instructionPointer;
-        public bool IsDone { get; private set; }
+        readonly List<long> _program;
 
-        IInputProvider inputProvider;
-        IOutputProvider outputProvider;
+        readonly VirtualMachineState _vmstate;
 
+        private int _relativeBase
+        {
+            get { return _vmstate.RelativeBaseOffset; }
+            set { _vmstate.RelativeBaseOffset = value; }
+        }
+
+        private int _instructionPointer
+        {
+            get { return _vmstate.InstructionPointer; }
+            set { _vmstate.InstructionPointer = value; }
+        }
+
+        public bool IsDone
+        {
+            get { return _vmstate.IsDone; }
+            private set { _vmstate.IsDone = value; }
+        }
+
+        readonly IInputProvider _inputProvider;
+        readonly IOutputProvider _outputProvider;
+
+        public IntcodeVirtualMachine(List<long> program, IInputProvider inputProvider = null, IOutputProvider outputProvider = null)
+        {
+            this._program = program;
+
+            _vmstate = new VirtualMachineState();
+
+            this._inputProvider = inputProvider ?? new ConsoleInputProvider();
+            this._outputProvider = outputProvider ?? new ConsoleOutputProvider();
+        }
 
         public IntcodeVirtualMachine(List<int> program, IInputProvider inputProvider = null, IOutputProvider outputProvider = null)
         {
-            this.program = program;
-            instructionPointer = 0;
-            IsDone = false;
+            this._program = program.Select(x => (long)x).ToList();
+            _vmstate = new VirtualMachineState();
 
-
-            this.inputProvider = inputProvider ?? new ConsoleInputProvider();
-            this.outputProvider = outputProvider ?? new ConsoleOutputProvider();
+            this._inputProvider = inputProvider ?? new ConsoleInputProvider();
+            this._outputProvider = outputProvider ?? new ConsoleOutputProvider();
         }
 
-        public int Run()
+        public long Run()
         {
             while (IsDone == false) { Step(); }
-            return program[0];
+            return _program[0];
         }
 
         public void Step()
         {
-            IInstruction instruction = InstructionFactory.GetInstruction(instructionPointer, program, inputProvider, outputProvider);
+            IInstruction instruction = InstructionFactory.GetInstruction(_vmstate, _program, _inputProvider, _outputProvider);
 
             if (instruction is StopInstruction)
             {
@@ -45,17 +69,14 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVM
             }
             else
             {
-                instructionPointer = instruction.Execute();
+                _instructionPointer = instruction.Execute();
             }
         }
 
         public string GetStateAsString()
         {
-            return String.Join(",", program);
+            return String.Join(",", _program);
         }
-        public List<int> GetState()
-        {
-            return program;
-        }
+        public List<long> GetState() => _program;
     }
 }

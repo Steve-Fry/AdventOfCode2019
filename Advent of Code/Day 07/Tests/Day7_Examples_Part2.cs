@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Xunit;
-using Advent_of_Code.SharedLibrary.IntcodeVM;
 
 namespace Advent_of_Code.Day_07.Tests
 {
@@ -16,7 +13,7 @@ namespace Advent_of_Code.Day_07.Tests
             feedbackAmplifierTuner.Run();
 
             int expectedSignal = 139629729;
-            List<int> expectedTune = new List<int>() { 9, 8, 7, 6, 5 };
+            List<long> expectedTune = new List<long>() { 9, 8, 7, 6, 5 };
             Assert.Equal(expectedSignal, feedbackAmplifierTuner.HighestOutput);
             Assert.Equal(expectedTune, feedbackAmplifierTuner.OptimalTune);
         }
@@ -29,7 +26,7 @@ namespace Advent_of_Code.Day_07.Tests
             feedbackAmplifierTuner.Run();
 
             int expectedSignal = 18216;
-            List<int> expectedTune = new List<int>() { 9, 7, 8, 5, 6 };
+            List<long> expectedTune = new List<long>() { 9, 7, 8, 5, 6 };
             Assert.Equal(expectedSignal, feedbackAmplifierTuner.HighestOutput);
             Assert.Equal(expectedTune, feedbackAmplifierTuner.OptimalTune);
         }

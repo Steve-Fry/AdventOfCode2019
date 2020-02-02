@@ -1,9 +1,6 @@
-﻿using Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Input_OutputProviders;
-using Advent_of_Code.SharedLibrary.IntcodeVM;
-using System;
+﻿using Advent_of_Code.SharedLibrary.IntcodeVirtualMachine;
+using Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Input_OutputProviders;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
 
 namespace Advent_of_Code.Day_07
 {
@@ -20,10 +17,10 @@ namespace Advent_of_Code.Day_07
             }
         }
 
-        public Queue<int> InputQueue { get; }
-        public Queue<int> OutputQueue { get; }
+        public Queue<long> InputQueue { get; }
+        public Queue<long> OutputQueue { get; }
 
-        public FeedbackAmplifier(List<int> program, Queue<int> inputQueue, Queue<int> outputQueue)
+        public FeedbackAmplifier(List<int> program, Queue<long> inputQueue, Queue<long> outputQueue)
         {
             _program = program;
             InputQueue = inputQueue;

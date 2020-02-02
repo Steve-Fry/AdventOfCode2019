@@ -6,6 +6,6 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Input_OutputProvide
 {
     public interface IInputProvider
     {
-        public int GetInput();
+        public long GetInput();
     }
 }
