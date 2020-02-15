@@ -29,12 +29,14 @@ namespace Advent_of_Code
             Day_07.Day_07 d7 = new Day_07.Day_07();
             d7.Run();
 
-
             Day_08.Day_08 d8 = new Day_08.Day_08();
             d8.Run();
             
             Day_09.Day_09 d9 = new Day_09.Day_09();
             d9.Run();
+
+            Day_10.Day_10 d10 = new Day_10.Day_10();
+            d10.Run();
 
             Console.WriteLine("Complete");
         }
