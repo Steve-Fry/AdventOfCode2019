@@ -18,5 +18,18 @@ namespace Advent_of_Code.Day_10.Tests
             Assert.Equal(20, asteroid.X);
             Assert.Equal(18, asteroid.Y);
         }
+
+        [Fact]
+        public void ShouldCorrectlyGetPart2Solution()
+        {
+            AsteroidMap map = new AsteroidMap(@"..\..\..\Day 10\Day10Input.txt");
+            Asteroid asteroid = map.GetBestAsteroid();
+
+            Asteroid answer = map.GetOrderOfDestruction(asteroid).Skip(199).First();
+
+            Assert.Equal(7, answer.X);
+            Assert.Equal(6, answer.Y);
+        }
+
     }
 }

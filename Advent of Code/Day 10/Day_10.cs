@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Advent_of_Code.Day_10
 {
     class Day_10
     {
+        internal AsteroidMap _map = new AsteroidMap(@"..\..\..\Day 10\Day10Input.txt");
 
         public void Run()
         {
@@ -14,8 +16,9 @@ namespace Advent_of_Code.Day_10
             Console.WriteLine($"=====Day 10, part 1=====");
             Console.WriteLine($"Solution: Asteroids Visible = {part1Asteroid.AsteroidsVisible} Position = ({part1Asteroid.X},{part1Asteroid.Y}) ");
 
+            Asteroid part2Asteroid = GetPart2Solution(part1Asteroid);
             Console.WriteLine($"=====Day 10, part 2=====");
-            Console.WriteLine($"Solution: ");
+            Console.WriteLine($"Solution: Asteroid Position = {part2Asteroid.X}, {part2Asteroid.Y}.  100X + Y = {(part2Asteroid.X * 100) + part2Asteroid.Y}");
 
             stopWatch.Stop();
             Console.WriteLine();
@@ -26,8 +29,12 @@ namespace Advent_of_Code.Day_10
 
         internal Asteroid GetPart1Solution()
         {
-            AsteroidMap map = new AsteroidMap(@"..\..\..\Day 10\Day10Input.txt");
-            return map.GetBestAsteroid();
+            return _map.GetBestAsteroid();
+        }
+
+        internal Asteroid GetPart2Solution(Asteroid asteroid)
+        {
+            return _map.GetOrderOfDestruction(asteroid).Skip(199).First();
         }
     }
 }
