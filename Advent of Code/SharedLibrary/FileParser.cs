@@ -28,6 +28,12 @@ namespace Advent_of_Code.SharedLibrary
             return input.Split(',').Select(x => int.Parse(x)).ToList();
         }
 
+        public static List<long> GetLongIntCodeFromFile(string path)
+        {
+            string input = File.ReadAllText(path);
+            return input.Split(',').Select(x => long.Parse(x)).ToList();
+        }
+
         public static List<string> GetStringsFromFile(string path)
         {
             return File.ReadAllLines(path).ToList();

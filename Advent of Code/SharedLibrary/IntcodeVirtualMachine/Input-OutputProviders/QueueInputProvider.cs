@@ -15,5 +15,4 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Input_OutputProvide
             return _inputQueue.Dequeue();
         }
     }
-
 }
