@@ -14,22 +14,41 @@ namespace Advent_of_Code.Day_12
             OrbitalBodies = orbitalBodies;
         }
 
-        public void DoTimeStep()
+        public void DoTimeSteps(int steps)
         {
-            var bodyCombinations = from b1 in OrbitalBodies
-                                   from b2 in OrbitalBodies
-                                   where b1 != b2
-                                   select (b1, b2);
 
-            foreach ((var body1, var body2) in bodyCombinations)
+            for (int dim = 0; dim < 3; dim++)
             {
-                body1.CalculateAcceleration(body2);
+                List<(float Position, float Velocity)> states = OrbitalBodies.Select(x => x.GetDimension(dim)).ToList();
+
+                for (int s = 0; s < steps; s++)
+                {
+                    var oldStateWithNewVelocity = states.Select(x => (x.Position, Velocity: GetNewVelocity(x, states) + x.Velocity));
+                    states = oldStateWithNewVelocity.Select(x => (Position: x.Position + x.Velocity, x.Velocity)).ToList();
+                }
+
+                var statesList = states.ToList();
+                for (int b = 0; b < OrbitalBodies.Count; b++)
+                {
+                    OrbitalBodies[b].SetDimension(dim, statesList[b]);
+                }
             }
-
-            OrbitalBodies.ForEach(x => x.ApplyAcceleration());
-
-            OrbitalBodies.ForEach(x => x.ApplyVelocity());
         }
+
+        private float GetNewVelocity((float Position, float Velocity) target, IEnumerable<(float Position, float Velocity)> others)
+        {
+
+            return (from other in others
+                    where other != target
+                    select GetAcceleration(target, other)).Sum();
+        }
+
+        private float GetAcceleration((float Position, float Velocity) target, (float Position, float Velocity) other)
+        {
+            return Math.Sign(other.Position - target.Position);
+        }
+
+        public void DoTimeStep() => DoTimeSteps(1);
 
         public float GetSystemEnergy() => OrbitalBodies.Select(x => x.GetTotalEnergy()).Sum();
 
@@ -45,46 +64,42 @@ namespace Advent_of_Code.Day_12
 
         public double GetNumberOfStepsPerCycle()
         {
-            long x_cycle = 0;
-            long y_cycle = 0;
-            long z_cycle = 0;
+            List<double> cycleLengths = new List<double>();
 
-            List<float> xStartPosition = OrbitalBodies.Select(x => x.Position.X).ToList();
-            List<float> xStartVelocity = OrbitalBodies.Select(x => x.Velocity.X).ToList();
-
-            List<float> yStartPosition = OrbitalBodies.Select(x => x.Position.Y).ToList();
-            List<float> yStartVelocity = OrbitalBodies.Select(x => x.Velocity.Y).ToList();
-
-            List<float> zStartPosition = OrbitalBodies.Select(x => x.Position.Z).ToList();
-            List<float> zStartVelocity = OrbitalBodies.Select(x => x.Velocity.Z).ToList();
-
-            long iterations = 0;
-            while (x_cycle == 0 || y_cycle == 0 || z_cycle == 0)
+            for (int dim = 0; dim < 3; dim++)
             {
-                DoTimeStep();
-                iterations++;
+                var previousStates = new HashSet<(float, float, float, float, float, float, float, float)>();
 
-                if (OrbitalBodies.Select(x => x.Position.X).ToList().SequenceEqual(xStartPosition)
-                    && OrbitalBodies.Select(x => x.Velocity.X).ToList().SequenceEqual(xStartVelocity))
+                List<(float Position, float Velocity)> states = OrbitalBodies.Select(x => x.GetDimension(dim)).ToList();
+                previousStates.Add((states[0].Position, states[1].Position, states[2].Position, states[3].Position,
+                                    states[0].Velocity, states[1].Velocity, states[2].Velocity, states[3].Velocity));
+
+                int cycles = 0;
+                while (true)
                 {
-                    x_cycle = iterations;
-                }
+                    var oldStateWithNewVelocity = states.Select(x => (x.Position, Velocity: GetNewVelocity(x, states) + x.Velocity));
+                    states = oldStateWithNewVelocity.Select(x => (Position: x.Position + x.Velocity, x.Velocity)).ToList();
 
-                if (OrbitalBodies.Select(x => x.Position.Y).ToList().SequenceEqual(yStartPosition)
-                    && OrbitalBodies.Select(x => x.Velocity.Y).ToList().SequenceEqual(yStartVelocity))
-                {
-                    y_cycle = iterations;
-                }
+                    cycles++;
 
-                if (OrbitalBodies.Select(x => x.Position.Z).ToList().SequenceEqual(zStartPosition)
-                    && OrbitalBodies.Select(x => x.Velocity.Z).ToList().SequenceEqual(zStartVelocity))
-                {
-                    z_cycle = iterations;
-                }
+                    var state = (states[0].Position, states[1].Position, states[2].Position, states[3].Position,
+                                 states[0].Velocity, states[1].Velocity, states[2].Velocity, states[3].Velocity);
 
+
+                    if (previousStates.Contains(state))
+                    {
+                        cycleLengths.Add(cycles);
+                        break;
+                    }
+                    else
+                    {
+                        previousStates.Add(state);
+                    }
+                }
             }
 
-            return SharedLibrary.MathLib.GetLCM(new List<double> { x_cycle, y_cycle, z_cycle });
+            return SharedLibrary.MathLib.GetLCM(cycleLengths);
         }
     }
 }
+

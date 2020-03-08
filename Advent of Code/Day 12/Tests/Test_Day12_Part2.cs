@@ -26,6 +26,32 @@ namespace Advent_of_Code.Day_12.Tests
         }
 
         [Fact]
+        public void HashSetPOC()
+        {
+            HashSet<List<(float, float)>> hs = new HashSet<List<(float, float)>>();
+
+            var a = (1, 2);
+            var b = (1, 2);
+            List<(float, float)> l1 = new List<(float, float)>();
+            l1.Add(a);
+            l1.Add(b);
+
+            Assert.True(hs.Add(l1));
+
+
+            var c = (1, 2);
+            var d = (1, 2);
+            List<(float, float)> l2 = new List<(float, float)>();
+            l1.Add(c);
+            l1.Add(d);
+
+            Assert.True(hs.Add(l2));
+            Assert.False(hs.Add(l2));
+
+
+        }
+
+        [Fact]
         public void ShouldCalculateExample2()
         {
             List<OrbitalBody> bodies = new List<OrbitalBody>()

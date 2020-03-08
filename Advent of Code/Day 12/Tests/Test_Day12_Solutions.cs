@@ -8,11 +8,11 @@ namespace Advent_of_Code.Day_12.Tests
 {
     public class Test_Day12_Solutions
     {
-        [Fact]
-        public void ShouldCorrectlyGetPart1Solution()
-        {
+        //[Fact]
+        //public void ShouldCorrectlyGetPart1Solution()
+        //{
       
-        }
+        //}
 
     }
 }
