@@ -26,7 +26,7 @@ namespace Advent_of_Code.Day_12
             Console.WriteLine();
         }
 
-        private float GetPart1Solution()
+        internal float GetPart1Solution()
         {
             List<OrbitalBody> bodies = new List<OrbitalBody>()
             {
@@ -46,7 +46,7 @@ namespace Advent_of_Code.Day_12
             return jovianSystem.GetSystemEnergy();
         }
 
-        private double GetPart2Solution()
+        internal double GetPart2Solution()
         {
             List<OrbitalBody> bodies = new List<OrbitalBody>()
             {
