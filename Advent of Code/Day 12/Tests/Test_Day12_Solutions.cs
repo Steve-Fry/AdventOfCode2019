@@ -20,7 +20,7 @@ namespace Advent_of_Code.Day_12.Tests
         public void ShouldCorrectlyGetPart2Solution()
         {
             Day_12 d12 = new Day_12();
-            Assert.Equal(307043147758488, d12.GetPart1Solution());
+            Assert.Equal(307043147758488, d12.GetPart2Solution());
         }
 
         
