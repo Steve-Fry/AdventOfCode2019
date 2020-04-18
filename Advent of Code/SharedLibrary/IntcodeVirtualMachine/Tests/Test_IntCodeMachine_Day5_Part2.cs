@@ -10,7 +10,8 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Tests
         [Fact]
         public void ShouldCorrectlyCalculatePart2()
         {
-            string filename = @"Day5Part1.txt";
+            string filename = System.IO.Path.GetTempFileName();
+
             List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"..\..\..\Day 05\input.txt");
             int expected = 3419022;
 
