@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Numerics;
-using System.Text;
 using Xunit;
 
 namespace Advent_of_Code.Day_12.Tests
@@ -25,11 +23,6 @@ namespace Advent_of_Code.Day_12.Tests
             Assert.Equal("pos=<x=4, y=-8, z=8>, vel=<x=0, y=0, z=0>", jovianSystem.OrbitalBodies[2].ToString());
             Assert.Equal("pos=<x=3, y=5, z=-1>, vel=<x=0, y=0, z=0>", jovianSystem.OrbitalBodies[3].ToString());
 
-            //jovianSystem.DoTimeStep();
-            //Assert.Equal("pos=<x=2, y=-1, z=1>, vel=<x=3, y=-1, z=-1>", jovianSystem.OrbitalBodies[0].ToString());
-            //Assert.Equal("pos=<x=3, y=-7, z=-4>, vel=<x=1, y=3, z=3>", jovianSystem.OrbitalBodies[1].ToString());
-            //Assert.Equal("pos=<x=1, y=-7, z=5>, vel=<x=-3, y=1, z=-3>", jovianSystem.OrbitalBodies[2].ToString());
-            //Assert.Equal("pos=<x=2, y=2, z=0>, vel=<x=-1, y=-3, z=1>", jovianSystem.OrbitalBodies[3].ToString());
         }
 
         [Fact]

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Xunit;
+﻿using Xunit;
 
 namespace Advent_of_Code.Day_12.Tests
 {
@@ -15,14 +11,11 @@ namespace Advent_of_Code.Day_12.Tests
             Assert.Equal(9876, d12.GetPart1Solution());
         }
 
-
         [Fact]
         public void ShouldCorrectlyGetPart2Solution()
         {
             Day_12 d12 = new Day_12();
             Assert.Equal(307043147758488, d12.GetPart2Solution());
         }
-
-        
     }
 }
