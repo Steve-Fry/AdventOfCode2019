@@ -11,7 +11,7 @@ namespace Advent_of_Code.Day_06
     {
         public void Run()
         {
-            List<string> input = SharedLibrary.FileParser.GetStringsFromFile(@"..\..\..\Day 06\Day6Input.txt");
+            List<string> input = SharedLibrary.FileParser.GetStringsFromFile(@"Inputs\Day6Input.txt");
             OrbitMapSolver mapSolver = new OrbitMapSolver(input);
 
             Console.WriteLine($"=====Day 6, part 1=====");

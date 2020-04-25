@@ -40,7 +40,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Tests
         public void ShouldCorrectlyCalculatePart1()
         {
             string filename = @"Day5Part1.txt";
-            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"..\..\..\Day 05\input.txt");
+            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"Inputs\Day05Input.txt");
             int expected = 4887191;
 
             IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<long>() { 1 }), new FileOutputProvider(filename));

@@ -11,7 +11,7 @@ namespace Advent_of_Code.Day_06.Tests
         [Fact]
         public void ShouldCalculateSimpleExample1()
         {
-            List<string> input = SharedLibrary.FileParser.GetStringsFromFile(@"..\..\..\Day 06\Day6_Example1.txt");
+            List<string> input = SharedLibrary.FileParser.GetStringsFromFile(@"Inputs\Day6_Example1Input.txt");
             OrbitMapSolver mapSolver = new OrbitMapSolver(input);
             int actual = mapSolver.TotalMapDistance;
             int expected = 42;
@@ -21,7 +21,7 @@ namespace Advent_of_Code.Day_06.Tests
         [Fact]
         public void ShoudlCalculateDistanceExample2()
         {
-            List<string> input = SharedLibrary.FileParser.GetStringsFromFile(@"..\..\..\Day 06\Day6_Example2.txt");
+            List<string> input = SharedLibrary.FileParser.GetStringsFromFile(@"Inputs\Day6_Example2Input.txt");
             OrbitMapSolver mapSolver = new OrbitMapSolver(input);
             int actual = mapSolver.GetShortestPathToSanta();
 

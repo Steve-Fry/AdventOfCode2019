@@ -34,7 +34,7 @@ namespace Advent_of_Code.Day_10.Tests
              *   }
              **/
 
-            AsteroidMap map = new AsteroidMap(@"..\..\..\Day 10\Tests\ExamplePart2_1.txt");
+            AsteroidMap map = new AsteroidMap(@"Inputs\Day10ExamplePart2_1Input.txt");
             Asteroid asteroid = map.Asteroids.Where(x => x.X == 8 && x.Y == 3).First();
             List<Asteroid> destructionOrder = map.GetOrderOfDestruction(asteroid).ToList();
 
@@ -196,7 +196,7 @@ namespace Advent_of_Code.Day_10.Tests
              * }
              **/
 
-            AsteroidMap map = new AsteroidMap(@"..\..\..\Day 10\Tests\Example5Input.txt");
+            AsteroidMap map = new AsteroidMap(@"Inputs\Example5Input.txt");
             Asteroid asteroid = map.Asteroids.Where(x => x.X == 11 && x.Y == 13).First();
             List<Asteroid> destructionOrder = map.GetOrderOfDestruction(asteroid).ToList();
 

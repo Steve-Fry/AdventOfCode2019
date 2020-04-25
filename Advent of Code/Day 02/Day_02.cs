@@ -6,7 +6,7 @@ namespace Advent_of_Code.Day_02
 {
     public class Day_02
     {
-        private readonly List<int> _initialState = SharedLibrary.FileParser.GetIntCodeFromFile(@"..\..\..\Day 02\input.txt");
+        private readonly List<int> _initialState = SharedLibrary.FileParser.GetIntCodeFromFile(@"Inputs\Day02Input.txt");
 
 
         public void Run()
