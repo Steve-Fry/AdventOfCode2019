@@ -11,7 +11,7 @@ namespace Advent_of_Code.Day_07
     {
         public void Run()
         {
-            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"..\..\..\Day 07\Day7Input.txt");
+            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"Inputs\Day07Input.txt");
             AmplifierTuner tuner = new AmplifierTuner(program);
             tuner.Run();
 

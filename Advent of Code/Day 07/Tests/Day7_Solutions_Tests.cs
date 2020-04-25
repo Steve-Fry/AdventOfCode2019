@@ -10,7 +10,7 @@ namespace Advent_of_Code.Day_07.Tests
         [Fact]
         public void ShouldCorrectlyCalculatePart1Solution()
         {
-            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"..\..\..\Day 07\Day7Input.txt");
+            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"Inputs\Day07Input.txt");
             AmplifierTuner tuner = new AmplifierTuner(program);
             tuner.Run();
 
@@ -24,7 +24,7 @@ namespace Advent_of_Code.Day_07.Tests
         [Fact]
         public void ShouldCorrectlyCalculatePart2Solution()
         {
-            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"..\..\..\Day 07\Day7Input.txt");
+            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"Inputs\Day07Input.txt");
             FeedbackAmplifierTuner feedbackTuner = new FeedbackAmplifierTuner(program);
             feedbackTuner.Run();
 

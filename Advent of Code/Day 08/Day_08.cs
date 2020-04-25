@@ -16,7 +16,7 @@ namespace Advent_of_Code.Day_08
         {
             Stopwatch stopWatch = Stopwatch.StartNew();
 
-            _imageParser = new SIFImage(@"..\..\..\Day 08\Day8Input.txt", 25, 6);
+            _imageParser = new SIFImage(@"Inputs\Day8Input.txt", 25, 6);
 
 
             Console.WriteLine($"=====Day 8, part 1=====");

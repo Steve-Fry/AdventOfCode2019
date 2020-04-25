@@ -11,7 +11,7 @@ namespace Advent_of_Code.Day_10.Tests
         [Fact]
         public void ShouldCorrectlyGetPart1Solution()
         {
-            AsteroidMap map = new AsteroidMap(@"..\..\..\Day 10\Day10Input.txt");
+            AsteroidMap map = new AsteroidMap(@"Inputs\Day10Input.txt");
             Asteroid asteroid = map.GetBestAsteroid();
 
             Assert.Equal(280, asteroid.AsteroidsVisible);
@@ -22,7 +22,7 @@ namespace Advent_of_Code.Day_10.Tests
         [Fact]
         public void ShouldCorrectlyGetPart2Solution()
         {
-            AsteroidMap map = new AsteroidMap(@"..\..\..\Day 10\Day10Input.txt");
+            AsteroidMap map = new AsteroidMap(@"Inputs\Day10Input.txt");
             Asteroid asteroid = map.GetBestAsteroid();
 
             Asteroid answer = map.GetOrderOfDestruction(asteroid).Skip(199).First();

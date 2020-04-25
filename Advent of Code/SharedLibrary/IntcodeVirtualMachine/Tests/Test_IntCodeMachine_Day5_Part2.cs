@@ -12,7 +12,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Tests
         {
             string filename = System.IO.Path.GetTempFileName();
 
-            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"..\..\..\Day 05\input.txt");
+            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"Inputs\Day05Input.txt");
             int expected = 3419022;
 
             IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<long>() { 5 }), new FileOutputProvider(filename));

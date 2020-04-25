@@ -68,7 +68,7 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine.Tests
         [Fact]
         public void ShouldCalculateTheCorrectResultForPart1()
         {
-            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"..\..\..\Day 02\input.txt");
+            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"Inputs\Day02Input.txt");
             IntcodeVirtualMachine intMachine = new IntcodeVirtualMachine(program);
             long actual = intMachine.Run();
 

@@ -6,7 +6,7 @@ namespace Advent_of_Code.Day_10
 {
     class Day_10
     {
-        internal AsteroidMap _map = new AsteroidMap(@"..\..\..\Day 10\Day10Input.txt");
+        internal AsteroidMap _map = new AsteroidMap(@"Inputs\Day10Input.txt");
 
         public void Run()
         {

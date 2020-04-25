@@ -31,7 +31,7 @@ namespace Advent_of_Code.Day_09
 
         private long GetPart1Solution()
         {
-            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"..\..\..\Day 09\Day9Input.txt");
+            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"Inputs\Day09Input.txt");
             Queue<long> outputQueue = new Queue<long>();
             
             IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<long> { 1 }), new QueueOutputProvider(outputQueue));
@@ -41,7 +41,7 @@ namespace Advent_of_Code.Day_09
 
         private long GetPart2Solution()
         {
-            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"..\..\..\Day 09\Day9Input.txt");
+            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"Inputs\Day09Input.txt");
             Queue<long> outputQueue = new Queue<long>();
 
             IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<long> { 2 }), new QueueOutputProvider(outputQueue));

@@ -23,7 +23,7 @@ namespace Advent_of_Code.Day_11
 
         public PaintingRobot(PaintableHullSection hull, int startingColour)
         {
-            _program = SharedLibrary.FileParser.GetLongIntCodeFromFile(@"..\..\..\Day 11\Day11Input.txt");
+            _program = SharedLibrary.FileParser.GetLongIntCodeFromFile(@"Inputs\Day11Input.txt");
             _inputQueue = new Queue<long>();
             _outputQueue = new Queue<long>();
 

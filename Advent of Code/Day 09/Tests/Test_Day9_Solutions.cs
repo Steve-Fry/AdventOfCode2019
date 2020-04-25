@@ -12,7 +12,7 @@ namespace Advent_of_Code.Day_09.Tests
         {
             long expected = 3533056970;
 
-            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"..\..\..\Day 09\Day9Input.txt");
+            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"Inputs\Day09Input.txt");
             Queue<long> outputQueue = new Queue<long>();
 
             IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<long> { 1 }), new QueueOutputProvider(outputQueue));
@@ -26,7 +26,7 @@ namespace Advent_of_Code.Day_09.Tests
         {
             long expected = 72852;
 
-            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"..\..\..\Day 09\Day9Input.txt");
+            List<int> program = SharedLibrary.FileParser.GetIntCodeFromFile(@"Inputs\Day09Input.txt");
             Queue<long> outputQueue = new Queue<long>();
 
             IntcodeVirtualMachine intcodeVirtualMachine = new IntcodeVirtualMachine(program, new StaticInputProvider(new List<long> { 2 }), new QueueOutputProvider(outputQueue));

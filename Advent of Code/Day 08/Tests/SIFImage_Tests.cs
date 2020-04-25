@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Xunit;
 
 namespace Advent_of_Code.Day_08.Tests
@@ -11,7 +8,7 @@ namespace Advent_of_Code.Day_08.Tests
         [Fact]
         public void ShouldCorrectlyConstructFromFile()
         {
-            SIFImage sifImageFromFile = new SIFImage(@"..\..\..\Day 08\Tests\Example1Input.txt", 3, 2);
+            SIFImage sifImageFromFile = new SIFImage(@"Inputs\Day08Example1Input.txt", 3, 2);
 
             List<List<int>> expectedLayers = new List<List<int>>
             {

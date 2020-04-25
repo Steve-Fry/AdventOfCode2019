@@ -4,11 +4,11 @@ using System.Text;
 using System.Linq;
 using Xunit;
 
-namespace Advent_of_Code.Day_01.Tests
+namespace Advent_of_Code.SharedLibrary.Tests
 {
     public class Test_GetDoublesFromFile
     {
-        const string filename = @"D:\DEV\CSharp\Advent of Code\Advent of Code\Day 01\input.txt";
+        const string filename = @"Inputs\Day01Input.txt";
 
         [Fact]
         public void ShouldReturnCorrectFirstResult()

@@ -8,7 +8,7 @@ namespace Advent_of_Code.Day_01
 {
     class Day_01
     {
-        const string filename = @"D:\DEV\CSharp\Advent of Code\Advent of Code\Day 01\input.txt";
+        const string filename = @"Inputs\Day01Input.txt";
         public static void Run()
         {
             Console.WriteLine($"=====Day 1, part 1=====");

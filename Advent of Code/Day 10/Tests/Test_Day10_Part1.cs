@@ -11,7 +11,7 @@ namespace Advent_of_Code.Day_10.Tests
         [Fact]
         public void ShouldCorrectlyCalculateExample1_Part1()
         {
-            AsteroidMap map = new AsteroidMap(@"..\..\..\Day 10\Tests\Example1Input.txt");
+            AsteroidMap map = new AsteroidMap(@"Inputs\Day10Example1Input.txt");
             Asteroid asteroid = map.Asteroids.Where(x => x.X == 3 && x.Y == 4).First();
 
             Assert.Equal(4, asteroid.Y);
@@ -24,7 +24,7 @@ namespace Advent_of_Code.Day_10.Tests
         [Fact]
         public void ShouldCorrectlyCalculateExample1()
         {
-            AsteroidMap map = new AsteroidMap(@"..\..\..\Day 10\Tests\Example1Input.txt");
+            AsteroidMap map = new AsteroidMap(@"Inputs\Day10Example1Input.txt");
 
             Asteroid asteroid = map.GetBestAsteroid();
             Assert.Equal(3, asteroid.X);
@@ -35,7 +35,7 @@ namespace Advent_of_Code.Day_10.Tests
         [Fact]
         public void ShouldCorrectlyCalculateExample2()
         {
-            AsteroidMap map = new AsteroidMap(@"..\..\..\Day 10\Tests\Example2Input.txt");
+            AsteroidMap map = new AsteroidMap(@"Inputs\Day10Example2Input.txt");
 
             Asteroid asteroid = map.GetBestAsteroid();
             Assert.Equal(5, asteroid.X);
@@ -46,7 +46,7 @@ namespace Advent_of_Code.Day_10.Tests
         [Fact]
         public void ShouldCorrectlyCalculateExample3()
         {
-            AsteroidMap map = new AsteroidMap(@"..\..\..\Day 10\Tests\Example3Input.txt");
+            AsteroidMap map = new AsteroidMap(@"Inputs\Day10Example3Input.txt");
 
             Asteroid asteroid = map.GetBestAsteroid();
             Assert.Equal(1, asteroid.X);
@@ -56,7 +56,7 @@ namespace Advent_of_Code.Day_10.Tests
         [Fact]
         public void ShouldCorrectlyCalculateExample4()
         {
-            AsteroidMap map = new AsteroidMap(@"..\..\..\Day 10\Tests\Example4Input.txt");
+            AsteroidMap map = new AsteroidMap(@"Inputs\Day10Example4Input.txt");
 
             Asteroid asteroid = map.GetBestAsteroid();
             Assert.Equal(6, asteroid.X);
@@ -67,7 +67,7 @@ namespace Advent_of_Code.Day_10.Tests
         [Fact]
         public void ShouldCorrectlyCalculateExample5()
         {
-            AsteroidMap map = new AsteroidMap(@"..\..\..\Day 10\Tests\Example5Input.txt");
+            AsteroidMap map = new AsteroidMap(@"Inputs\Day10Example5Input.txt");
 
             Asteroid asteroid = map.GetBestAsteroid();
             Assert.Equal(11, asteroid.X);
