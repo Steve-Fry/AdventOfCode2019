@@ -12,12 +12,12 @@ namespace Advent_of_Code.Day_13
     {
         private List<long> _program;
         IntcodeVirtualMachine _vm;
-        Queue<long> _inputQueue;
         Queue<long> _outputQueue;
         public SortedDictionary<int, SortedDictionary<int, ArcadeMachineTile>> _state { get; private set; }
 
-        long _score;
+        int _score;
         private int _ballXPosition;
+        private int _paddleXPosition;
 
         public ArcadeMachine()
         {
@@ -40,23 +40,25 @@ namespace Advent_of_Code.Day_13
 
         public void RunMachine()
         {
+            _vm.Run();
             DisablePayment();
+            ReadState();
+            WriteToScreen();
+
+            _vm.Reset();
             _vm.Run();
             ReadState();
             WriteToScreen();
-            _vm.Run();
-            ReadState();
-            WriteToScreen();
+
             Debug.WriteLine("Hello World");
         }
 
         private void InitaliseVM()
         {
             _program = SharedLibrary.FileParser.GetLongIntCodeFromFile(@"Inputs\Day13Input.txt");
-            _inputQueue = new Queue<long>();
             _outputQueue = new Queue<long>();
 
-            IInputProvider inputProvider = new JoyStickInputProvider();
+            IInputProvider inputProvider = new JoyStickInputProvider(_ballXPosition, _paddleXPosition);
             QueueOutputProvider outputProvider = new QueueOutputProvider(_outputQueue);
 
             _vm = new IntcodeVirtualMachine(_program, inputProvider, outputProvider);
@@ -86,12 +88,21 @@ namespace Advent_of_Code.Day_13
 
                 if (output[0] == -1 && output[1] == 0)
                 {
-                    _score = output[2];
+                    _score = (int)output[2];
                 }
                 else
                 {
                     ArcadeMachineTile tile = ArcadeMachineTileFactory.GetTile((int)output[0], (int)output[1], (int)output[2]);
                     AddTile(tile);
+
+                    if (tile is ArcadeMachineBallTile)
+                    {
+                        _ballXPosition = tile.X;
+                    } 
+                    else if (tile is ArcadeMachineBallTile) 
+                    {
+                        _paddleXPosition = tile.X;
+                    }
                 }
             }
         }
@@ -123,9 +134,32 @@ namespace Advent_of_Code.Day_13
 
     internal class JoyStickInputProvider : IInputProvider
     {
+        int _ballXPosition;
+        int _paddleXPosition;
+        public JoyStickInputProvider(int ballXPosition, int paddleXPosition)
+        {
+            _ballXPosition = ballXPosition;
+            _paddleXPosition = paddleXPosition;
+        }
+
         public long GetInput()
         {
-            return 1;
+            if (_ballXPosition == _paddleXPosition)
+            {
+                return 0;
+            }
+            else if (_ballXPosition < _paddleXPosition)
+            {
+                return -1;
+            }
+            else if (_ballXPosition > _paddleXPosition)
+            {
+                return +1;
+            }
+            else 
+            {
+                throw new Exception($"Invalid ball/paddle position Ball:{_ballXPosition}, Paddle: {_paddleXPosition}");
+            }
         }
     }
 }

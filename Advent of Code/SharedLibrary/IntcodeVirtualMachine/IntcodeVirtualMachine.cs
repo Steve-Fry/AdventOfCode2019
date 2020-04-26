@@ -73,6 +73,13 @@ namespace Advent_of_Code.SharedLibrary.IntcodeVirtualMachine
             }
         }
 
+        public void Reset() 
+        {
+            IsDone = false;
+            _instructionPointer = 0;
+            _relativeBase = 0;
+        }
+
         public string GetStateAsString()
         {
             return String.Join(",", _program);
