@@ -11,7 +11,7 @@ namespace Advent_of_Code.Day_13
         public void ShouldReturnCorrectAnswerForPart1()
         {
             ArcadeMachine arcadeMachine = new ArcadeMachine();
-            int answer = arcadeMachine.GetInitialScreenOutput().InSetsOf(3).Count(x => x[2] == 2);
+            int answer = arcadeMachine.GetInitialBlockCount();
 
             Assert.Equal(277, answer);
         }
@@ -20,10 +20,9 @@ namespace Advent_of_Code.Day_13
         public void ShouldReturnCorrectAnswerForPart2()
         {
             ArcadeMachine arcadeMachine = new ArcadeMachine();
-            arcadeMachine.RunMachine();
+            int answer = arcadeMachine.PlayGameUntilCompleted();
 
-            Assert.Equal(1, 0);
+            Assert.Equal(12856, answer);
         }
-
     }
 }

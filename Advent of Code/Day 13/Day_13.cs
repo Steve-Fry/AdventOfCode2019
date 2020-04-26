@@ -30,14 +30,16 @@ namespace Advent_of_Code.Day_13
 
         internal int GetPart1Solution()
         {
-            int answer = _arcadeMachine.GetInitialScreenOutput().InSetsOf(3).Count(x => x[2] == 2);
+            ArcadeMachine arcadeMachine = new ArcadeMachine();
+            int answer = arcadeMachine.GetInitialBlockCount();
             return answer;
         }
 
         internal int GetPart2Solution()
         {
-            _arcadeMachine.RunMachine();
-            return 0;
+            ArcadeMachine arcadeMachine = new ArcadeMachine();
+            int answer = arcadeMachine.PlayGameUntilCompleted();
+            return answer;
         }
     }
 }
