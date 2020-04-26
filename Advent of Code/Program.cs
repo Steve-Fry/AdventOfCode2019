@@ -48,6 +48,8 @@ namespace Advent_of_Code
             Day_12.Day_12 d12 = new Day_12.Day_12();
             d12.Run();
 
+            Day_13.Day_13 d13 = new Day_13.Day_13();
+            d13.Run();
 
             Console.WriteLine("Complete");
             Log.Information("Finished Advent of Code Solution");
