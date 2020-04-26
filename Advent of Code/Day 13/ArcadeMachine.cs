@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using SharedLibrary;
+using System;
 
 namespace Advent_of_Code.Day_13
 {
@@ -15,13 +16,21 @@ namespace Advent_of_Code.Day_13
         Queue<long> _outputQueue;
         public SortedDictionary<int, SortedDictionary<int, ArcadeMachineTile>> _state { get; private set; }
 
+        long _score;
+        private int _ballXPosition;
+
         public ArcadeMachine()
         {
             InitaliseVM();
+            _state = new SortedDictionary<int, SortedDictionary<int, ArcadeMachineTile>>();
+            _score = 0;
         }
 
-        private void SetState(int x, int y, ArcadeMachineTile tile)
+        private void AddTile(ArcadeMachineTile tile)
         {
+            int x = tile.X;
+            int y = tile.Y;
+
             if (!_state.ContainsKey(y))
             {
                 _state[y] = new SortedDictionary<int, ArcadeMachineTile>();
@@ -33,6 +42,11 @@ namespace Advent_of_Code.Day_13
         {
             DisablePayment();
             _vm.Run();
+            ReadState();
+            WriteToScreen();
+            _vm.Run();
+            ReadState();
+            WriteToScreen();
             Debug.WriteLine("Hello World");
         }
 
@@ -56,8 +70,54 @@ namespace Advent_of_Code.Day_13
         public List<long> GetInitialScreenOutput()
         {
             _vm.Run();
-            _inputQueue.Enqueue(0);
             return _outputQueue.ToList();
+        }
+
+        private void ReadState()
+        {
+            List<long> output = new List<long>(3);
+            while (_outputQueue.Count >= 3)
+            {
+                output.Clear();
+                for (int i = 0; i < 3; i++)
+                {
+                    output.Add(_outputQueue.Dequeue());
+                }
+
+                if (output[0] == -1 && output[1] == 0)
+                {
+                    _score = output[2];
+                }
+                else
+                {
+                    ArcadeMachineTile tile = ArcadeMachineTileFactory.GetTile((int)output[0], (int)output[1], (int)output[2]);
+                    AddTile(tile);
+                }
+            }
+        }
+
+        private void WriteToScreen()
+        {
+            int width = _state.Keys.SelectMany(x => _state[x].Keys).Max();
+            int height = _state.Keys.Max();
+
+            SortedDictionary<int, ArcadeMachineTile> row;
+            ArcadeMachineTile tile;
+            Console.WriteLine($"Score: {_score}");
+            for (int i = 0; i <= height; i++)
+            {
+                if (_state.TryGetValue(i, out row))
+                {
+                    for (int j = 0; j <= width; j++)
+                    {
+                        if (row.TryGetValue(j, out tile))
+                        {
+                            Console.Write(tile.ToString());
+                        }
+                    }
+                }
+                Console.WriteLine("");
+            }
         }
     }
 

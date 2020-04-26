@@ -8,7 +8,7 @@ namespace Advent_of_Code.Day_13
         {
             switch (tileType)
             {
-                case 0: { return null; }
+                case 0: { return new ArcadeMachineEmptyTile(x,y); }
                 case 1: { return new ArcadeMachineWallTile(x, y); }
                 case 2: { return new ArcadeMachineBlockTile(x, y); }
                 case 3: { return new ArcadeMachineHPaddleTile(x, y); }

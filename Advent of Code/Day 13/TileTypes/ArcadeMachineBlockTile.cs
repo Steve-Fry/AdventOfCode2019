@@ -3,5 +3,10 @@
     internal class ArcadeMachineBlockTile : ArcadeMachineTile
     {
         public ArcadeMachineBlockTile(int x, int y) : base(x, y) { }
+        public override string ToString()
+        {
+            return "*";
+        }
+
     }
 }

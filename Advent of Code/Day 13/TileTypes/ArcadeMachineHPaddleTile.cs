@@ -3,5 +3,11 @@
     internal class ArcadeMachineHPaddleTile : ArcadeMachineTile
     {
         public ArcadeMachineHPaddleTile(int x, int y) : base(x, y) { }
+
+        public override string ToString()
+        {
+            return "-";
+        }
+
     }
 }

@@ -3,5 +3,11 @@
     internal class ArcadeMachineWallTile : ArcadeMachineTile
     {
         public ArcadeMachineWallTile(int x, int y) :base(x,y){}
+
+        public override string ToString()
+        {
+            return "#";
+        }
+
     }
 }
