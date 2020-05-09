@@ -1,6 +1,7 @@
 ﻿using Advent_of_Code.SharedLibrary.IntcodeVirtualMachine;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Advent_of_Code.Day_02
 {
@@ -11,12 +12,17 @@ namespace Advent_of_Code.Day_02
 
         public void Run()
         {
+            Stopwatch stopWatch = Stopwatch.StartNew();
+
             Console.WriteLine($"=====Day 2, part 1=====");
             Console.WriteLine($"Position 0 in the output: {GetPart1Solution()}");
             Console.WriteLine($"=====Day 2, part 2=====");
             Console.WriteLine($"Position 0 in the output: {GetPart2Solution()}");
             Console.WriteLine("");
 
+            Console.WriteLine($"Day 2 completed in {stopWatch.ElapsedMilliseconds} ms");
+            Console.WriteLine();
+            Console.WriteLine();
         }
 
         private long GetPart1Solution()
