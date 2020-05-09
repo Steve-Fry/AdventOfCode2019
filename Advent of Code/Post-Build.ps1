@@ -22,4 +22,6 @@ Write-Output "Destination: $BuildDir"
 $PuzzleInputDirectory = Join-Path $BuildDir "Inputs"
 New-Item -Type "Directory" -Path $PuzzleInputDirectory -ErrorAction "SilentlyContinue"
 Write-Output "InputDir: $PuzzleInputDirectory"
-Get-ChildItem -Path $ProjectDir -Recurse -Filter "*Input.txt" | Copy-Item -Destination $PuzzleInputDirectory -Force
+Get-ChildItem -Path . -Recurse -Filter "*Input.txt" | 
+	Where-Object {$_.DirectoryName -notmatch "^.*\\bin\\.*Inputs$"} | 
+	Copy-Item -Destination $PuzzleInputDirectory -Force
