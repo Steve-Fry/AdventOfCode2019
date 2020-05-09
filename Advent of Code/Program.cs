@@ -1,5 +1,4 @@
 ﻿using System;
-using Serilog;
 
 
 namespace Advent_of_Code
@@ -8,10 +7,6 @@ namespace Advent_of_Code
     {
         static void Main(string[] args)
         {
-            SetupLogger();
-
-            Log.Information("Starting Advent of Code Solution");
-
             Console.WriteLine("Starting");
             Day_01.Day_01.Run();
 
@@ -52,24 +47,7 @@ namespace Advent_of_Code
             d13.Run();
 
             Console.WriteLine("Complete");
-            Log.Information("Finished Advent of Code Solution");
-        }
-
-        static private void SetupLogger()
-        {
-            string logFilename = "AdventOfCodeLog.log";
-
-            if (System.IO.File.Exists(logFilename))
-            {
-                System.IO.File.WriteAllText(logFilename, string.Empty);
-            }
-
-            Log.Logger = new LoggerConfiguration()
-                .WriteTo.File(logFilename)
-                .MinimumLevel.Debug()
-                .CreateLogger();
         }
     }
-
 }
 
