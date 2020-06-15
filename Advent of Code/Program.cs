@@ -46,6 +46,9 @@ namespace Advent_of_Code
             Day_13.Day_13 d13 = new Day_13.Day_13();
             d13.Run();
 
+            Day_14.Day_14 d14 = new Day_14.Day_14();
+            d14.Run();
+
             Console.WriteLine("Complete");
         }
     }
