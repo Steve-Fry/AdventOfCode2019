@@ -57,13 +57,11 @@ namespace Advent_of_Code.Day_07
             Log.Debug("Setting tune");
             for (int i = 0; i < amplifierCount; i++)
             {
-                var tuneElement= i == 0 ? tune[amplifierCount - 1] : tune[i - 1]; // Input to the first should be the output from the last. 
-                buffers[i].Post(tuneElement);
+                amplifiers[i].InputBuffer.Post(tune[i]);
             }
 
             Log.Debug("Priming amplifier 0 with input");
             amplifiers[0].InputBuffer.Post(0);
-
 
             Log.Debug("Running amplifiers");
             amplifiers.ForEach(x => x.Run());
