@@ -1,5 +1,5 @@
-﻿using System;
-
+﻿using Serilog;
+using System;
 
 namespace Advent_of_Code
 {
@@ -7,6 +7,8 @@ namespace Advent_of_Code
     {
         static void Main(string[] args)
         {
+            SetupLogging();
+
             Console.WriteLine("Starting");
             Day_01.Day_01.Run();
 
@@ -50,6 +52,17 @@ namespace Advent_of_Code
             d14.Run();
 
             Console.WriteLine("Complete");
+        }
+
+        private static void SetupLogging()
+        {
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.WithThreadId()
+                .WriteTo.File(
+                    "DebugLog.log",
+                    rollingInterval: RollingInterval.Day,
+                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj} <{ThreadId}>{NewLine}{Exception}")
+                .CreateLogger();
         }
     }
 }
