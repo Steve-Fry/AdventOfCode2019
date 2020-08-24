@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using Advent_of_Code.SharedLibrary;
+using System.Threading.Tasks.Dataflow;
+using System.Threading.Tasks;
+using Serilog;
 using System.Linq;
 
 namespace Advent_of_Code.Day_07
@@ -23,70 +26,80 @@ namespace Advent_of_Code.Day_07
             foreach (var tune in permetations)
             {
                 long input_output;
-
                 input_output = RunFeedbackAmplifier(tune);
-
                 UpdateBestResult(tune, input_output);
-
             }
+        }
+
+        private List<BufferBlock<long>> GetEmptyBuffers(List<long> tune)
+        {
+            int amplifierCount = tune.Count;
+            List<BufferBlock<long>> buffers = new List<BufferBlock<long>>();
+
+            Log.Debug("Initalising Buffers");
+            for (int i = 0; i < amplifierCount; i++)
+            {
+                buffers.Add(new BufferBlock<long>());
+            }
+
+            return buffers;
+        }
+
+        private List<FeedbackAmplifier> GetAmplifiers(List<long> tune, List<BufferBlock<long>> buffers)
+        {
+            Log.Debug("Initalising Amplifiers");
+            int amplifierCount = tune.Count;
+            List<FeedbackAmplifier> amplifiers = new List<FeedbackAmplifier>();
+
+            for (int i = 0; i < amplifierCount; i++)
+            {
+                var inputBuffer = i == 0 ? buffers[amplifierCount - 1] : buffers[i - 1]; // Input to the first should be the output from the last. 
+                var outputBuffer = buffers[i];
+                var programCopy = _program.GetRange(0, _program.Count);
+                amplifiers.Add(new FeedbackAmplifier(programCopy, inputBuffer, outputBuffer));
+            }
+
+            return amplifiers;
+        }
+
+        private void InitaliseAmplifierTune(List<long> tune, List<FeedbackAmplifier> amplifiers)
+        {
+            Log.Debug("Setting tune");
+            for (int i = 0; i < amplifiers.Count; i++)
+            {
+                amplifiers[i].InputBuffer.Post(tune[i]);
+            }
+        }
+
+        private void WriteAmplifierInput(List<FeedbackAmplifier> amplifiers)
+        {
+            Log.Debug("Priming amplifier 0 with input");
+            amplifiers[0].InputBuffer.Post(0);
+        }
+
+        private void RunAmplifiers(List<FeedbackAmplifier> amplifiers)
+        {
+            Log.Debug("Running amplifiers");
+            amplifiers.ForEach(x => x.Run());
+        }
+
+        private void WaitForAmplifierCompletion(List<FeedbackAmplifier> amplifiers)
+        {
+            Log.Debug("Waiting for any task to complete");
+            var tasks = amplifiers.Select(x => x.Task);
+            Task.WhenAll(tasks).Wait();
+            Log.Debug("All tasks completed");
         }
 
         private long RunFeedbackAmplifier(List<long> tune)
         {
-            Queue<long> amplifierAOutputQueue = new Queue<long>();
-            Queue<long> amplifierBOutputQueue = new Queue<long>();
-            Queue<long> amplifierCOutputQueue = new Queue<long>();
-            Queue<long> amplifierDOutputQueue = new Queue<long>();
-            Queue<long> amplifierEOutputQueue = new Queue<long>();
-
-            FeedbackAmplifier amplifierA = new FeedbackAmplifier(_program.GetRange(0, _program.Count), amplifierEOutputQueue, amplifierAOutputQueue);
-            FeedbackAmplifier amplifierB = new FeedbackAmplifier(_program.GetRange(0, _program.Count), amplifierAOutputQueue, amplifierBOutputQueue);
-            FeedbackAmplifier amplifierC = new FeedbackAmplifier(_program.GetRange(0, _program.Count), amplifierBOutputQueue, amplifierCOutputQueue);
-            FeedbackAmplifier amplifierD = new FeedbackAmplifier(_program.GetRange(0, _program.Count), amplifierCOutputQueue, amplifierDOutputQueue);
-            FeedbackAmplifier amplifierE = new FeedbackAmplifier(_program.GetRange(0, _program.Count), amplifierDOutputQueue, amplifierEOutputQueue);
-
-            List<FeedbackAmplifier> amplifiers = new List<FeedbackAmplifier>
-            {
-                amplifierA,
-                amplifierB,
-                amplifierC,
-                amplifierD,
-                amplifierE
-            };
-
-            amplifierAOutputQueue.Enqueue(tune[1]);
-            amplifierBOutputQueue.Enqueue(tune[2]);
-            amplifierCOutputQueue.Enqueue(tune[3]);
-            amplifierDOutputQueue.Enqueue(tune[4]);
-            amplifierEOutputQueue.Enqueue(tune[0]);
-
-            amplifierEOutputQueue.Enqueue(0);
-
-
-            // Initialise Amplifiers
-            foreach (var amplifier in amplifiers)
-            {
-                while (amplifier.InputQueue.Count > 0)
-                {
-                    amplifier.Step();
-                }
-            }
-
-            while (true)
-            {
-                foreach (var amplifier in amplifiers)
-                {
-                    while (amplifier.OutputQueue.Count == 0 && amplifier.IsDone == false)
-                    {
-                        amplifier.Step();
-                    }
-
-                    if (amplifier.IsDone == true)
-                    {
-                        return amplifierE.OutputQueue.Dequeue();
-                    }
-                }
-            }
+            List<BufferBlock<long>> buffers = GetEmptyBuffers(tune);
+            List<FeedbackAmplifier> amplifiers = GetAmplifiers(tune, buffers);
+            InitaliseAmplifierTune(tune, amplifiers);
+            WriteAmplifierInput(amplifiers);
+            RunAmplifiers(amplifiers);
+            WaitForAmplifierCompletion(amplifiers);
+            return amplifiers[0].InputBuffer.Receive();
         }
 
         private void UpdateBestResult(List<long> tune, long output)

@@ -34,6 +34,5 @@ namespace Advent_of_Code.Day_07.Tests
             Assert.Equal(expectedTune, feedbackTuner.OptimalTune);
             Assert.Equal(expectedOutput, feedbackTuner.HighestOutput);
         }
-
     }
 }
