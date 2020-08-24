@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using System.IO;
 using System.Diagnostics;
 
 namespace Advent_of_Code.Day_07
@@ -33,7 +30,5 @@ namespace Advent_of_Code.Day_07
             Console.WriteLine();
 
         }
-
-
     }
 }
